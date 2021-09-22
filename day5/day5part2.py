@@ -69,28 +69,23 @@ def main():
     print(all_seats)
 
     # find first empty seat from down and from up
-    mid = int(len(all_seats)/2)
-    up_empty = None
-    down_empty = None
-    i = mid
-    while up_empty == None:
-        if all_seats[i] == None:
-            up_empty = i
+    count = len(all_seats)
+    mid = int(count/2)
+    # search in both directions from the middle to find the closest seat
+    found_seat = None
+    up = mid
+    down = mid
+    while found_seat == None:
+        if down >= 0 and all_seats[down] == None:
+            found_seat = down
             break
-        i += 1
-    i = mid
-    while down_empty == None:
-        if all_seats[i] == None:
-            down_empty = i
+        if up < count and all_seats[up] == None:
+            found_seat = up
             break
-        i -= 1
+        down -= 1
+        up += 1
 
-    # print(up_empty)
-    # print(down_empty)
-
-    # Solution: Closest empty seat to the middle
-    my_seat = up_empty if (up_empty-mid) < (mid-down_empty) else down_empty
-    print(f'My Seat ID: {my_seat}')
+    print(f'My Seat ID: {found_seat}')
 
     # test values
     # print(get_seat_id("BFFFBBFRRR") == 567)
