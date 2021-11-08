@@ -51,7 +51,4 @@ def main():
 
 if __name__ == "__main__":
 	main()
-
-
-# correct = 408270049879073
  
